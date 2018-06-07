@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maple.bbs.mapper.UserMapper">
+    <resultMap id="userMap" type="User">
+        <id property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="user_password"/>
+        <result property="sex" column="sex"/>
+        <result property="message" column="message"/>
+        <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
+        <result property="authority" column="authority"/>
+        <result property="headImg" column="head_img" jdbcType="BLOB"/>
+        <result property="userState" column="user_state"/>
+        <result property="banTime" column="ban_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="selectAllUser" resultMap="userMap">
+        select * from user
+    </select>
+    <select id="selectUserByName" parameterType="java.lang.String" resultMap="userMap">
+        select * from user where user_name = #{name}
+    </select>
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId">
+        insert into user(user_name, user_password, sex, message, register_time) VALUES(#{userName},#{password},#{sex},#{message},#{registerTime})
+    </insert>
+    <update id="updateUser">
+        update user
+        <set>
+            <if test="password !=null and password !=''">user_password=#{password},</if>
+            <if test="sex !=null and sex !=''">sex=#{sex},</if>
+            <if test="message !=null and message !=''">message=#{message},</if>
+            <if test="authority !=null">authority=#{authority},</if>
+            <if test="headImg !=null">head_img=#{headImg},</if>
+            <if test="userState !=null">user_state=#{userState},</if>
+            <if test="banTime !=null">ban_time=#{banTime}</if>
+        </set>
+        where user_id = #{userId}
+    </update>
+</mapper>

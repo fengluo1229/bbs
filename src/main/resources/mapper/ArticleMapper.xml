@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maple.bbs.mapper.ArticleMapper">
+    <resultMap id="articleMap" type="Article">
+        <id property="articleId" column="article_id"></id>
+        <result property="articleTitle" column="article_title"></result>
+        <result property="articleBody" column="article_body"></result>
+        <result property="author" column="author"></result>
+        <result property="articleState" column="article_state"></result>
+        <result property="sortId" column="sort_id"></result>
+        <result property="labelId" column="label_id"></result>
+        <result property="postTime" column="post_time" jdbcType="TIMESTAMP"></result>
+    </resultMap>
+    <select id="selectAllArticle" resultMap="articleMap">
+        select * from article
+    </select>
+    <select id="selectArticlesBySortId" resultMap="articleMap" parameterType="java.lang.String">
+        select * from article where sort_id = #{sortId}
+    </select>
+    <insert id="insertArticle" useGeneratedKeys="true" keyProperty="articleId">
+        insert into article(article_title, article_body, author, sort_id, label_id, post_time) VALUES (#{articleTitle},#{articleBody},#{author},#{sortId},#{labelId},#{postTime})
+    </insert>
+    <update id="updateArticle">
+        update article
+        <set>
+            <if test="sortId !=null and sortId !=''">sort_id=#{sortId},</if>
+            <if test="labelId !=null and labelId !=''">label_id=#{labelId},</if>
+            <if test="articleState !=null and articleState !=''">article_state=#{articleState}</if>
+        </set>
+        where artice_id=#{articleId}
+    </update>
+</mapper>

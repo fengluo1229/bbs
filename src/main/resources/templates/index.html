@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Maple</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<nav class="nav navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <a href="@{index.html}" th:class="navbar-brand">Maple</a>
+    </div>
+    ${users}
+</nav>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jQuery.js}"></script>
+</body>
+</html>
