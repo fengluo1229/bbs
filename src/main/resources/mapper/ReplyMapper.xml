@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maple.bbs.mapper.ReplyMapper">
+    <resultMap id="replyMap" type="Reply">
+        <result property="replyId" column="reply_id"></result>
+        <result property="articleId" column="article_id"></result>
+        <result property="message" column="message"></result>
+        <result property="author" column="author"></result>
+        <result property="postTime" column="post_time"></result>
+        <result property="replyState" column="reply_state"></result>
+        <result property="readState" column="read_state"></result>
+    </resultMap>
+    <select id="selectAllReplyByArticleId" resultMap="replyMap">
+        select * from reply where article_id = #{articleId} and reply_state = '0'  ORDER BY post_time ASC
+    </select>
+    <insert id="insertReply" useGeneratedKeys="true" keyProperty="replyId">
+        insert into reply(article_id, message, author, post_time) values (#{articleId},#{message},#{author},#{postTime})
+    </insert>
+    <update id="deleteReply">
+        update reply
+        set reply_state = '1'
+        where reply_id = #{replyId}
+    </update>
+    <update id="recoverReply">
+        update reply
+        set reply_state = '0'
+        where reply_id = #{replyId}
+    </update>
+    <update id="readReply">
+        update reply
+        set read_state = '1'
+        where reply_id = #{replyId}
+    </update>
+</mapper>

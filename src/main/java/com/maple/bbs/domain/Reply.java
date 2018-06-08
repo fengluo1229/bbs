@@ -1,5 +1,7 @@
 package com.maple.bbs.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 public class Reply {
@@ -8,7 +10,9 @@ public class Reply {
     private String author;
     private String message;
     private Date postTime;
+    @JsonIgnore
     private Integer replyState;
+    @JsonIgnore
     private Integer readState;
 
     public Long getReplyId() {

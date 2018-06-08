@@ -8,5 +8,8 @@ import java.util.List;
 @Mapper
 public interface ReplyMapper {
     List<Reply> selectAllReplyByArticleId(String articleId);
-
+    int insertReply(Reply reply);
+    int deleteReply(String replyId);
+    int recoverReply(String replyId);
+    int readReply(String replyId);
 }

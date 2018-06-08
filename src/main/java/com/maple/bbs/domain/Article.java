@@ -1,16 +1,27 @@
 package com.maple.bbs.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
 public class Article {
+
     private Long articleId;
     private String articleTitle;
     private String articleBody;
     private String author;
+    @JsonIgnore
     private Integer articleState;
-    private Integer sortId;
-    private Integer labelId;
+    private String sort;
+    private String label;
     private Date postTime;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Date lastReplyTime;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String lastReplyAuthor;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Integer replyNum;
 
     public Long getArticleId() {
         return articleId;
@@ -52,20 +63,20 @@ public class Article {
         this.articleState = articleState;
     }
 
-    public Integer getSortId() {
-        return sortId;
+    public String getSort() {
+        return sort;
     }
 
-    public void setSortId(Integer sortId) {
-        this.sortId = sortId;
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 
-    public Integer getLabelId() {
-        return labelId;
+    public String getLabel() {
+        return label;
     }
 
-    public void setLabelId(Integer labelId) {
-        this.labelId = labelId;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public Date getPostTime() {
@@ -74,5 +85,29 @@ public class Article {
 
     public void setPostTime(Date postTime) {
         this.postTime = postTime;
+    }
+
+    public Date getLastReplyTime() {
+        return lastReplyTime;
+    }
+
+    public void setLastReplyTime(Date lastReplyTime) {
+        this.lastReplyTime = lastReplyTime;
+    }
+
+    public String getLastReplyAuthor() {
+        return lastReplyAuthor;
+    }
+
+    public void setLastReplyAuthor(String lastReplyAuthor) {
+        this.lastReplyAuthor = lastReplyAuthor;
+    }
+
+    public Integer getReplyNum() {
+        return replyNum;
+    }
+
+    public void setReplyNum(Integer replyNum) {
+        this.replyNum = replyNum;
     }
 }

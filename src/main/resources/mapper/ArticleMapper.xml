@@ -7,26 +7,34 @@
         <result property="articleBody" column="article_body"></result>
         <result property="author" column="author"></result>
         <result property="articleState" column="article_state"></result>
-        <result property="sortId" column="sort_id"></result>
-        <result property="labelId" column="label_id"></result>
+        <result property="sort" column="sort"></result>
+        <result property="label" column="label"></result>
         <result property="postTime" column="post_time" jdbcType="TIMESTAMP"></result>
+        <result property="lastReplyTime" column="last_reply_time" jdbcType="TIMESTAMP"></result>
+        <result property="lastReplyAthor" column="last_reply_author"></result>
+        <result property="replyNum" column="replyNum"></result>
     </resultMap>
-    <select id="selectAllArticle" resultMap="articleMap">
-        select * from article
-    </select>
-    <select id="selectArticlesBySortId" resultMap="articleMap" parameterType="java.lang.String">
-        select * from article where sort_id = #{sortId}
-    </select>
+    <!--<select id="selectAllArticle" resultMap="articleMap">-->
+        <!--select * from article-->
+    <!--</select>-->
+    <!--<select id="selectArticlesBySortId" resultMap="articleMap" parameterType="java.lang.String">-->
+        <!--select * from article where sort = #{sortId}-->
+    <!--</select>-->
     <insert id="insertArticle" useGeneratedKeys="true" keyProperty="articleId">
-        insert into article(article_title, article_body, author, sort_id, label_id, post_time) VALUES (#{articleTitle},#{articleBody},#{author},#{sortId},#{labelId},#{postTime})
+        insert into article(article_title, article_body, author, sort, label, post_time) VALUES (#{articleTitle},#{articleBody},#{author},#{sort},#{label},#{postTime})
     </insert>
-    <update id="updateArticle">
+    <update id="updateLastReply" parameterType="Reply">
         update article
-        <set>
-            <if test="sortId !=null and sortId !=''">sort_id=#{sortId},</if>
-            <if test="labelId !=null and labelId !=''">label_id=#{labelId},</if>
-            <if test="articleState !=null and articleState !=''">article_state=#{articleState}</if>
-        </set>
-        where artice_id=#{articleId}
+        set  reply_num=reply_num+1,last_reply_time=#{postTime},last_reply_author=#{author}
+        where article_id=#{articleId};
     </update>
+    <!--<update id="updateArticle">-->
+        <!--update article-->
+        <!--<set>-->
+            <!--<if test="sortId !=null and sortId !=''">sort_id=#{sortId},</if>-->
+            <!--<if test="labelId !=null and labelId !=''">label_id=#{labelId},</if>-->
+            <!--<if test="articleState !=null and articleState !=''">article_state=#{articleState}</if>-->
+        <!--</set>-->
+        <!--where artice_id=#{articleId}-->
+    <!--</update>-->
 </mapper>
