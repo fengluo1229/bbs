@@ -11,7 +11,7 @@
         <result property="label" column="label"></result>
         <result property="postTime" column="post_time" jdbcType="TIMESTAMP"></result>
         <result property="lastReplyTime" column="last_reply_time" jdbcType="TIMESTAMP"></result>
-        <result property="lastReplyAthor" column="last_reply_author"></result>
+        <result property="lastReplyAuthor" column="last_reply_author"></result>
         <result property="replyNum" column="replyNum"></result>
     </resultMap>
     <!--<select id="selectAllArticle" resultMap="articleMap">-->
@@ -28,6 +28,45 @@
         set  reply_num=reply_num+1,last_reply_time=#{postTime},last_reply_author=#{author}
         where article_id=#{articleId};
     </update>
+    <update id="topArticle">
+        update article
+        set article_state='1'
+        where article_id=#{articleId};
+    </update>
+    <update id="starArticle">
+        update article
+        set article_state='2'
+        where article_id=#{articleId};
+    </update>
+    <update id="deleteArticle">
+        update article
+        set article_state='-1'
+        where article_id=#{articleId};
+    </update>
+    <update id="cancelDelete">
+        update article
+        set article_state='0'
+        where article_id=#{articleId};
+    </update>
+    <update id="cancelTop">
+        update article
+        set article_state='0'
+        where article_id=#{articleId};
+    </update>
+    <update id="cancelStar">
+        update article
+        set article_state='0'
+        where article_id=#{articleId};
+    </update>
+    <select id="queryAllDeleteArticle" resultMap="articleMap">
+    select * from article where article_state='-1' order by post_time asc
+    </select>
+    <select id="queryAllTopArticle" resultMap="articleMap">
+    select * from article where article_state='1' order by post_time asc
+    </select>
+    <select id="queryAllStarArticle" resultMap="articleMap">
+    select * from article where article_state='2' order by post_time asc
+    </select>
     <!--<update id="updateArticle">-->
         <!--update article-->
         <!--<set>-->

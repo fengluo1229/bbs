@@ -1,5 +1,6 @@
 package com.maple.bbs.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -15,8 +16,10 @@ public class Article {
     private Integer articleState;
     private String sort;
     private String label;
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss a", locale="zh", timezone="GMT+8")
     private Date postTime;
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss a", locale="zh", timezone="GMT+8")
     private Date lastReplyTime;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String lastReplyAuthor;

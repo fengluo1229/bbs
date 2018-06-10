@@ -1,5 +1,6 @@
 package com.maple.bbs.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.maple.bbs.domain.Article;
 import com.maple.bbs.domain.Reply;
 import com.maple.bbs.mapper.ArticleMapper;
@@ -27,4 +28,95 @@ public class ArticleServiceImpl implements ArticleService {
             return -1;
         }
     }
+
+    @Override
+    @Transactional
+    public int topArticle(String articleId) {
+        try {
+            int resultNum = articleMapper.topArticle(articleId);
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    @Transactional
+    public int starArticle(String articleId) {
+        try {
+            int resultNum = articleMapper.starArticle(articleId);
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    @Transactional
+    public int deleteArticle(String articleId) {
+        try {
+            int resultNum = articleMapper.deleteArticle(articleId);
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    @Transactional
+    public int cancelDelete(String articleId) {
+        try {
+            int resultNum = articleMapper.cancelDelete(articleId);
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    @Transactional
+    public int cancelTop(String articleId) {
+        try {
+            int resultNum = articleMapper.cancelTop(articleId);
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    @Transactional
+    public int cancelStar(String articleId) {
+        try {
+            int resultNum = articleMapper.cancelStar(articleId);
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    public List<Article> queryAllDeleteArticle(String page) {
+        PageHelper.startPage(Integer.valueOf(page),20);
+        return articleMapper.queryAllDeleteArticle();
+    }
+
+    @Override
+    public List<Article> queryAllTopArticle(String page) {
+        PageHelper.startPage(Integer.valueOf(page),20);
+        return articleMapper.queryAllTopArticle();
+    }
+
+    @Override
+    public List<Article> queryAllStarArticle(String page) {
+        PageHelper.startPage(Integer.valueOf(page),20);
+        return articleMapper.queryAllStarArticle();
+    }
+
 }

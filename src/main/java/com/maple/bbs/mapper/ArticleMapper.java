@@ -13,5 +13,14 @@ public interface ArticleMapper {
     //List<Article> selectArticlesBySortId(String sortId);
     int insertArticle(Article article);
     int updateLastReply(Reply reply);
+    int topArticle(String articleId);
+    int starArticle(String articleId);
+    int deleteArticle(String articleId);
+    int cancelDelete(String articleId);
+    int cancelTop(String articleId);
+    int cancelStar(String articleId);
+    List<Article> queryAllDeleteArticle();
+    List<Article> queryAllTopArticle();
+    List<Article> queryAllStarArticle();
     //int updateArticle(Article article);
 }

@@ -59,4 +59,24 @@ public class ArticleController {
             return Result.resultMessage(500,"reply error");
         }
     }
+
+    @PostMapping(value = "/t/{articleId}/top")
+    public Result top(@PathVariable("articleId")String articleId){
+        int resultNum = articleService.topArticle(articleId);
+        if(resultNum==0){
+            return Result.resultMessage(200,"top successfully");
+        }else {
+            return Result.resultMessage(400,"top error");
+        }
+    }
+
+    @PostMapping(value = "/t/{articleId}/star")
+    public Result start(@PathVariable("articleId")String articleId){
+        int resultNum = articleService.starArticle(articleId);
+        if(resultNum==0){
+            return Result.resultMessage(200,"top successfully");
+        }else {
+            return Result.resultMessage(400,"top error");
+        }
+    }
 }

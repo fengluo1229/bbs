@@ -1,5 +1,6 @@
 package com.maple.bbs.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
@@ -9,6 +10,7 @@ public class Reply {
     private Long articleId;
     private String author;
     private String message;
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss a", locale="zh", timezone="GMT+8")
     private Date postTime;
     @JsonIgnore
     private Integer replyState;

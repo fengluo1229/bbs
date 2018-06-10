@@ -37,4 +37,23 @@ public class ReplyServiceImpl implements ReplyService {
             return -1;
         }
     }
+
+    @Override
+    public List<Reply> queryDeleteReply(String page) {
+        PageHelper.startPage(Integer.valueOf(page),20);
+        return replyMapper.queryDeleteReply();
+
+    }
+
+    @Override
+    @Transactional
+    public int recoverReply(String replyId) {
+        try {
+            int resultNum = replyMapper.recoverReply(replyId);
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }

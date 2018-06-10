@@ -1,5 +1,6 @@
 package com.maple.bbs.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -17,11 +18,13 @@ public class User implements Serializable {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String message;
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss a", locale="zh", timezone="GMT+8")
     private Date registerTime;
     private Integer authority;
     private byte[] headImg;
     private Integer userState;
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss a", locale="zh", timezone="GMT+8")
     private Date banTime;
 
     public void setHeadImg(byte[] headImg) {

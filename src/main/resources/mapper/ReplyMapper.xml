@@ -31,4 +31,7 @@
         set read_state = '1'
         where reply_id = #{replyId}
     </update>
+    <select id="queryDeleteReply" resultMap="replyMap">
+        select * from  reply where reply_state = '1' order by post_time asc
+    </select>
 </mapper>

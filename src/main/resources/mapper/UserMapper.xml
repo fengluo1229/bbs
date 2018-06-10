@@ -35,4 +35,17 @@
         </set>
         where user_id = #{userId}
     </update>
+    <update id="banUser">
+        update user
+        set user_state='1',ban_time=#{arg0}
+        where user_name=#{arg1}
+    </update>
+    <update id="cancelBan">
+        update user
+        set user_state='0'
+        where user_name=#{userName}
+    </update>
+    <select id="selectAllBanUser" resultMap="userMap">
+        select * from user where user_state='1'
+    </select>
 </mapper>

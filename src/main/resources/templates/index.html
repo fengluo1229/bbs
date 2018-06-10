@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <title>Maple</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bbs.css}">
+    <script th:src="@{/js/jQuery.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
 <nav class="nav navbar navbar-default navbar-fixed-top">
     <div class="navbar-header">
-        <a href="@{index.html}" th:class="navbar-brand">Maple</a>
+        <a href="index.html" class="navbar-brand">Maple</a>
     </div>
-    ${users}
+    <div class="container-fluid">
+        <div class="nav navbar-nav navbar-right">
+            <li><a href="#" class="active">登录</a></li>
+            <li><a href="#" >注册</a></li>
+        </div>
+    </div>
 </nav>
-
-<script th:src="@{/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/jQuery.js}"></script>
+<div class="container main">
+</div>
 </body>
 </html>

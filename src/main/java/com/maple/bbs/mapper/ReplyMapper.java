@@ -12,4 +12,5 @@ public interface ReplyMapper {
     int deleteReply(String replyId);
     int recoverReply(String replyId);
     int readReply(String replyId);
+    List<Reply> queryDeleteReply();
 }
