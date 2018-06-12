@@ -9,18 +9,38 @@
     <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<nav class="nav navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-        <a href="index.html" class="navbar-brand">Maple</a>
-    </div>
-    <div class="container-fluid">
-        <div class="nav navbar-nav navbar-right">
-            <li><a href="#" class="active">登录</a></li>
-            <li><a href="#" >注册</a></li>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <nav class="nav navbar navbar-default navbar-fixed-top bar">
+                <div class="navbar-header">
+                    <a href="./index.html" class="navbar-brand">Maple</a>
+                </div>
+                <div class="container-fluid">.
+                    <div class="nav navbar-nav navbar-right">
+                        <li><a href="./login.html" class="active">登录</a></li>
+                        <li><a href="./register.html" >注册</a></li>
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
-</nav>
-<div class="container main">
+</div>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-md-7 col-md-offset-1">
+            <div>
+                <tr th:each="article : ${topArticle}">
+                    <td th:text="${article.articleTitle}"></td>
+                    <td th:text="${article.articleBody}"></td>
+                    <td th:text="${article.author}"></td>
+                </tr>
+            </div>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
 </div>
 </body>
 </html>
