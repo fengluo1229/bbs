@@ -4,6 +4,7 @@ import com.maple.bbs.domain.User;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     List<User> queryAllUser();
@@ -13,4 +14,5 @@ public interface UserService {
     int banUser(String userName, Date date);
     int cancelBan(String userName);
     List<User> queryAllBanUser(String page);
+    int banUsersPage();
 }

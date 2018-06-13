@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @RestController
+@CrossOrigin
 public class ArticleController {
     @Autowired
     ArticleService articleService;

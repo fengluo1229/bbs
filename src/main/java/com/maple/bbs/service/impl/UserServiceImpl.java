@@ -1,5 +1,6 @@
 package com.maple.bbs.service.impl;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.page.PageMethod;
 import com.maple.bbs.domain.User;
@@ -9,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -21,8 +20,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> queryAllUser() {
         PageHelper.startPage(1,10);
-        List users = new ArrayList<User>();
-        users=userMapper.selectAllUser();
+        List users=userMapper.selectAllUser();
         return users;
     }
 
@@ -31,7 +29,7 @@ public class UserServiceImpl implements UserService {
     public int register(User user) {
         try {
             user.setRegisterTime(new Date());
-            int resultNum = userMapper.insertUser(user);
+            userMapper.insertUser(user);
             return 1;
         } catch (Exception e){
             e.printStackTrace();
@@ -78,8 +76,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> queryAllBanUser(String page) {
-        PageHelper.startPage(Integer.valueOf(page),20);
+        PageHelper.startPage(Integer.valueOf(page),10);
         return userMapper.selectAllBanUser();
+    }
+
+    @Override
+    public int banUsersPage() {
+        int num = userMapper.pageForBanUser();
+        int pageNum = num/10+1;
+        return pageNum;
     }
 
 }

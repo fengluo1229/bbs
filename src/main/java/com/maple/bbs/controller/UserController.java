@@ -14,6 +14,7 @@ import java.util.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -27,12 +28,14 @@ public class UserController {
         user.setSex(Integer.valueOf(request.getParameter("sex")));
         user.setMessage(request.getParameter("message"));
         user.setRegisterTime(new Date());
+        System.out.println(user.getUserName());
+        System.out.println(user.getSex());
         int resultNum = userService.register(user);
         if(resultNum==1){
             return Result.resultMessage(200,"register successfully");
         }
         else {
-            return Result.resultMessage(404,"User existed");
+            return Result.resultMessage(500,"User existed");
         }
     }
 

@@ -21,6 +21,7 @@ public class User implements Serializable {
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss a", locale="zh", timezone="GMT+8")
     private Date registerTime;
     private Integer authority;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private byte[] headImg;
     private Integer userState;
     @JsonInclude(JsonInclude.Include.NON_NULL)

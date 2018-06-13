@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+		<meta charset="utf-8">
+		<link href="css/login.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<script>
+				$(document).ready(function(){
+					$("#submit").click(function(){
+						$.ajax({
+						url:"http:127.0.0.1:8080/register",
+						type:"post",
+						dataType:"json",
+						data:{
+							userName:$("#userName").val(),
+							password:$("#password").val(),
+							message:$("#message").val(),
+							sex:$("input[name='optionsRadiosinline']:checked").val()
+						},
+						success:function(data){
+							console.log(data);
+							if(data.message=="register successfully"){
+								window.location.href='./login.html';
+							}else{
+								alert(data.message);
+							}
+						},
+						error:function(data){
+							console.log(data);
+						}
+						
+						});	
+					});
+				});
+			</script>
+	</head>
+<body>
+	
+	 <div class="main">
+		<div class="login-form">
+			<h1>欢迎注册！</h1>
+					
+				<form>
+						<input type="text" class="text" placeholder="用户名" id="userName">
+                        <input type="password" placeholder="密码" id="password">
+						<input type="text" placeholder="个人信息" id="message">
+						<label for="radio" >性别</label>
+						<input type="radio" name="optionsRadiosinline" id="man" value="0" checked> 男
+						<input type="radio" name="optionsRadiosinline" id="women"  value="1"> 女
+						<div class="submit">
+						<input class="btn btn-primary" id="submit" value="现在注册">
+					</div>	
+				</form>
+			</div>
+			
+		</div>
+			
+		 		
+</body>
+</html>

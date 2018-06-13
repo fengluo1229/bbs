@@ -1,16 +1,11 @@
 package com.maple.bbs.controller;
 
-import com.maple.bbs.domain.Reply;
 import com.maple.bbs.domain.Result;
 import com.maple.bbs.service.ArticleService;
 import com.maple.bbs.service.ReplyService;
 import com.maple.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
@@ -18,6 +13,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 @RestController
+@CrossOrigin
 public class AdminController {
     @Autowired
     UserService userService;
@@ -34,22 +30,25 @@ public class AdminController {
             return Result.resultData(200,"success",userService.queryAllBanUser("1"));
         }
     }
+    @GetMapping(value = "/admin/user/pageNum")
+    public Result getBanUsersPageNum(){
+        return Result.resultData(200,"success",userService.banUsersPage());
+    }
 
     @PostMapping(value = "/admin/user/ban")
     public Result banUser(HttpServletRequest request){
         String userName = request.getParameter("userName");
         String banTime = request.getParameter("banTime");
-        if(banTime.equals("1天")){
+        if(banTime.equals("1")){
             Date date = new Date();
             Calendar calendar = new GregorianCalendar();
             calendar.setTime(date);
             calendar.add(calendar.DATE,1);
             date = calendar.getTime();
-            System.out.println(date);
             if(userService.banUser(userName,date)==0){
                 return Result.resultMessage(200,"success");
             }
-        }else if(banTime.equals("7天")){
+        }else if(banTime.equals("7")){
             Date date = new Date();
             Calendar calendar = new GregorianCalendar();
             calendar.setTime(date);
@@ -70,6 +69,7 @@ public class AdminController {
         }
         return Result.resultMessage(500,"error,User not found");
     }
+
 
     @PostMapping(value = "/admin/user/cancel")
     public Result cancelBan(@RequestParam("userName")String userName){
@@ -139,6 +139,7 @@ public class AdminController {
             return Result.resultData(200,"success",replyService.queryDeleteReply("1"));
         }
     }
+
     @PostMapping(value = "/admin/reply/recover")
     public Result recoverReply(@RequestParam("replyId")String replyId){
         if(replyService.recoverReply(replyId)==0){
