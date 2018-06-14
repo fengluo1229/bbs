@@ -22,5 +22,7 @@ public interface ArticleMapper {
     List<Article> queryAllDeleteArticle();
     List<Article> queryAllTopArticle();
     List<Article> queryAllStarArticle();
+    int pageForStar();
+    int pageForDelete();
     //int updateArticle(Article article);
 }

@@ -93,7 +93,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public int cancelStar(String articleId) {
         try {
-            int resultNum = articleMapper.cancelStar(articleId);
+            articleMapper.cancelStar(articleId);
             return 0;
         }catch (Exception e){
             e.printStackTrace();
@@ -117,6 +117,20 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> queryAllStarArticle(String page) {
         PageHelper.startPage(Integer.valueOf(page),20);
         return articleMapper.queryAllStarArticle();
+    }
+
+    @Override
+    public int starArticlePage() {
+        int num = articleMapper.pageForStar();
+        int pageNum = num/10+1;
+        return pageNum;
+    }
+
+    @Override
+    public int deleteArticlePage() {
+        int num = articleMapper.pageForDelete();
+        int pageNum = num/10+1;
+        return pageNum;
     }
 
 }

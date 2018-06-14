@@ -80,6 +80,11 @@ public class AdminController {
         }
     }
 
+    @GetMapping(value = "/admin/deleteArticle/pageNum")
+    public Result getDeleteArticlePageNum(){
+        return Result.resultData(200,"success",articleService.deleteArticlePage());
+    }
+
     @GetMapping(value = "/admin/deleteArticle")
     public Result getAllDeleteArticle(@RequestParam(name = "page",required = false)String page){
         if(page!=null){
@@ -97,6 +102,7 @@ public class AdminController {
             return Result.resultMessage(500,"cancel delete error");
         }
     }
+
     @GetMapping(value = "/admin/topArticle")
     public Result getAllTopArticle(@RequestParam(name = "page",required = false)String page){
         if(page!=null){
@@ -114,6 +120,12 @@ public class AdminController {
             return Result.resultMessage(500,"cancel top error");
         }
     }
+
+    @GetMapping(value = "/admin/starArticle/pageNum")
+    public Result getStarArticlePageNum(){
+        return Result.resultData(200,"success",articleService.starArticlePage());
+    }
+
     @GetMapping(value = "/admin/starArticle")
     public Result getAllStarArticle(@RequestParam(name = "page",required = false)String page){
         if(page!=null){
