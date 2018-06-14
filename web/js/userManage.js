@@ -5,7 +5,7 @@ $($.ajax({
     success:function(data){
         var trs = "<table class=\"table  table-striped table-bordered\"><tr><th>用户名</th><th>禁言时间</th><th>操作</th></tr>";
         $.each(data.data,function(n,value){
-            trs+="<tr><td>"+value.userName+"</td><td>"+value.banTime+"</td><td><button class=\"btn btn-danger\" onclick='cancelBan(\""+value.userName+"\")'>解除禁言</button></td>";
+            trs+="<tr><td>"+value.userName+"</td><td>"+value.banTime+"</td><td><button class=\"btn btn-danger\" onclick='cancelBan(\""+value.userName+"\")'>解除禁言</button></td></tr>";
         });
         trs+="</table>"
         $("#result").append(trs);

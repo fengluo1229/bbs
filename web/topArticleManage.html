@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <title>
-    用户管理
+    置顶文章管理
 </title>
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/bbs.css">
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <!-- <script src="./js/jQuery.js"></script> -->
-<script src="./js/userManage.js"></script>
+<script src="./js/topArticleManage.js"></script>
 </head>
 <body>
         <div class="container-fluid">
@@ -34,24 +34,7 @@
                             </ul>
                         </div>
                         <div class="col-md-11 col-xs-11 col-md-offset-1 tableT" >
-                                <div class="banForm">
-                                    <form class="form-inline">
-                                        <div class="form-group">
-                                            <label for="userName">用户名</label>
-                                            <input type="text" class="form-control" id="userName" placeholder="用户名">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="optionsRadiosinline">封禁时间</label>
-                                            <input type="radio" name="options" id="man" value="1" checked> 一天
-                                            <input type="radio" name="options" id="women"  value="7"> 七天
-                                            <input type="radio" name="options" id="women"  value="forever"> 永久
-                                            <input class="btn btn-danger" onclick="banUser()" value="封禁">
-                                        </div>
-                                    </form>
-                                </div>
                                 <div id="result"></div>
-                                <div id="page" class="btn-group" role="group" aria-label="...">
-                    
                                 </div>
                             </div>  
                     </div>
