@@ -21,6 +21,22 @@ public class AdminController {
     @Autowired
     ReplyService replyService;
 
+    //获取所有用户数
+    @GetMapping(value = "/admin/allUserNum")
+    public Result getAllUserNum(){
+        return Result.resultData(200,"success",userService.userNum("0")+userService.userNum("1"));
+    }
+    //获取所有文章数
+    @GetMapping(value = "/admin/allArticleNum")
+    public Result getAllArticleNum(){
+        return Result.resultData(200,"success",articleService.articleNum("-1")+articleService.articleNum("0")+articleService.articleNum("1")+articleService.articleNum("2"));
+    }
+    //获取所有回复数
+    @GetMapping(value = "/admin/allReplyNum")
+    public Result getAllReplyNum(){
+        return Result.resultData(200,"success",replyService.replyNum("1")+replyService.replyNum("0"));
+    }
+
     //获取封禁用户api
     @GetMapping(value = "/admin/user")
     public Result getAllBanUser(@RequestParam(name = "page",required = false)String page){
@@ -83,7 +99,7 @@ public class AdminController {
     //获取删除文章页数api
     @GetMapping(value = "/admin/deleteArticle/pageNum")
     public Result getDeleteArticlePageNum(){
-        return Result.resultData(200,"success",articleService.articlePage("-1"));
+        return Result.resultData(200,"success",articleService.articleNum("-1")/20+1);
     }
 
     //获取删除文章api
@@ -129,7 +145,7 @@ public class AdminController {
     //获取精品文章页数api
     @GetMapping(value = "/admin/starArticle/pageNum")
     public Result getStarArticlePageNum(){
-        return Result.resultData(200,"success",articleService.articlePage("2"));
+        return Result.resultData(200,"success",articleService.articleNum("2")/20+1);
     }
 
     //获取精品文章api
@@ -155,7 +171,7 @@ public class AdminController {
     //获取删除回复页数api
     @GetMapping(value = "/admin/reply/pageNum")
     public Result getDeleteReplyPageNum(){
-        return Result.resultData(200,"success",replyService.pageForReply("-1"));
+        return Result.resultData(200,"success",replyService.replyNum("1")/20+1);
     }
     @GetMapping(value = "/admin/reply")
     public Result getAllDeleteReply(@RequestParam(name = "page",required = false)String page){

@@ -99,6 +99,6 @@ public class ArticleController {
     //获取普通文章页数api
     @GetMapping(value = "/article/pageNum")
     public Result getAllArticlePageNum(){
-        return Result.resultData(200,"success",articleService.articlePage("0"));
+        return Result.resultData(200,"success",articleService.articleNum("0")/20+1);
     }
 }

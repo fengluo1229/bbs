@@ -67,7 +67,7 @@
     <select id="queryAllStarArticle" resultMap="articleMap">
     select * from article where article_state='2' order by post_time asc
     </select>
-    <select id="pageForArticle" resultType="java.lang.Integer">
+    <select id="articleNum" resultType="java.lang.Integer">
         select count(*) from article where article_state=#{articleState}
     </select>
     <select id="queryAllArticle" resultMap="articleMap">

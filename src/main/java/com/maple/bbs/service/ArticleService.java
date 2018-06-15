@@ -18,5 +18,5 @@ public interface ArticleService {
     List<Article> queryAllTopArticle(String page);
     List<Article> queryAllStarArticle(String page);
     List<Article> queryAllArticle(String page);
-    int articlePage(String articleState);
+    int articleNum(String articleState);
 }

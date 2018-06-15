@@ -15,4 +15,5 @@ public interface UserService {
     int cancelBan(String userName);
     List<User> queryAllBanUser(String page);
     int banUsersPage();
+    int userNum(String userState);
 }

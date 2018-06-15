@@ -57,9 +57,7 @@ public class ReplyServiceImpl implements ReplyService {
         }
     }
     @Override
-    public int pageForReply(String replyState){
-        int num = replyMapper.pageForReply(replyState);
-        int pageNum = num/10+1;
-        return pageNum;
+    public int replyNum(String replyState){
+        return  replyMapper.replyNum(replyState);
     }
 }

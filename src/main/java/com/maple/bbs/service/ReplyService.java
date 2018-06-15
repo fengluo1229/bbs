@@ -9,5 +9,5 @@ public interface ReplyService {
     int reply(Reply reply);
     List<Reply> queryDeleteReply(String page);
     int recoverReply(String replyId);
-    int pageForReply(String replyState);
+    int replyNum(String replyState);
 }

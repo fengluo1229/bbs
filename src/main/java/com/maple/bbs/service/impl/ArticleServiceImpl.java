@@ -126,10 +126,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public int articlePage(String articleState) {
-        int num = articleMapper.pageForArticle(articleState);
-        int pageNum = num/10+1;
-        return pageNum;
+    public int articleNum(String articleState) {
+        return articleMapper.articleNum(articleState);
     }
 
 }

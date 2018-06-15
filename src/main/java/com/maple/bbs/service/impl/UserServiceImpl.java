@@ -82,9 +82,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int banUsersPage() {
-        int num = userMapper.pageForBanUser();
+        int num = userMapper.userNum("1");
         int pageNum = num/10+1;
         return pageNum;
     }
 
+    @Override
+    public int userNum(String userState){
+        return userMapper.userNum(userState);
+    }
 }

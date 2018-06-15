@@ -33,7 +33,7 @@ public interface ArticleMapper {
 
     List<Article> queryAllStarArticle();
 
-    int pageForArticle(String articleString);
+    int articleNum(String articleString);
 
     List<Article> queryAllArticle();
 }

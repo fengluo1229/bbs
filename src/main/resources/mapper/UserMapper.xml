@@ -48,7 +48,7 @@
     <select id="selectAllBanUser" resultMap="userMap">
         select * from user where user_state='1'
     </select>
-    <select id="pageForBanUser" resultType="java.lang.Integer">
-        select count(*) from user where user_state='1'
+    <select id="userNum" resultType="java.lang.Integer">
+        select count(*) from user where user_state=#{userState}
     </select>
 </mapper>
