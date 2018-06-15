@@ -1,5 +1,5 @@
 $($.ajax({
-    url:"http:127.0.0.1:8080/admin/deleteArticle",
+    url:"http://127.0.0.1:8080/admin/deleteArticle",
     type:"get",
     dataType:"json",
     success:function(data){
@@ -12,7 +12,7 @@ $($.ajax({
     }
 }));
 $($.ajax({
-    url:"http:127.0.0.1:8080/admin/deleteArticle/pageNum",
+    url:"http://127.0.0.1:8080/admin/deleteArticle/pageNum",
     type:"get",
     success:function(data){
         var pageNum=data.data;
@@ -25,7 +25,7 @@ $($.ajax({
 }));
 function cancelDelete(articleId){
     $.ajax({
-        url:"http:127.0.0.1:8080/admin/article/cancelDelete",
+        url:"http://127.0.0.1:8080/admin/article/cancelDelete",
         type:"post",
         data:{
             articleId:articleId
@@ -39,7 +39,7 @@ function cancelDelete(articleId){
 };
 function changePage(page){
     $.ajax({
-        url:"http:127.0.0.1:8080/admin/deleteArticle",
+        url:"http://127.0.0.1:8080/admin/deleteArticle",
         type:"get",
         data:{
             page:page

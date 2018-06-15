@@ -13,7 +13,7 @@ $($.ajax({
 }));
 function cancelTop(articleId){
     $.ajax({
-        url:"http:127.0.0.1:8080/admin/article/cancelTop",
+        url:"http://127.0.0.1:8080/admin/article/cancelTop",
         type:"post",
         data:{
             articleId:articleId

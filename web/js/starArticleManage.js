@@ -1,5 +1,5 @@
 $($.ajax({
-    url:"http:127.0.0.1:8080/admin/starArticle",
+    url:"http://127.0.0.1:8080/admin/starArticle",
     type:"get",
     dataType:"json",
     success:function(data){
@@ -12,7 +12,7 @@ $($.ajax({
     }
 }));
 $($.ajax({
-    url:"http:127.0.0.1:8080/admin/starArticle/pageNum",
+    url:"http://127.0.0.1:8080/admin/starArticle/pageNum",
     type:"get",
     success:function(data){
         var pageNum=data.data;
@@ -25,7 +25,7 @@ $($.ajax({
 }));
 function cancelStar(articleId){
     $.ajax({
-        url:"http:127.0.0.1:8080/admin/article/cancelStar",
+        url:"http://127.0.0.1:8080/admin/article/cancelStar",
         type:"post",
         data:{
             articleId:articleId
@@ -39,7 +39,7 @@ function cancelStar(articleId){
 };
 function changePage(page){
     $.ajax({
-        url:"http:127.0.0.1:8080/admin/starArticle",
+        url:"http://127.0.0.1:8080/admin/starArticle",
         type:"get",
         data:{
             page:page

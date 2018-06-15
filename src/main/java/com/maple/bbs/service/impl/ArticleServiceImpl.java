@@ -22,7 +22,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public int newArticle(Article article) {
         try {
-            int resultNum = articleMapper.insertArticle(article);
+            articleMapper.insertArticle(article);
             return 0;
         } catch (Exception e) {
             return -1;
@@ -33,7 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public int topArticle(String articleId) {
         try {
-            int resultNum = articleMapper.topArticle(articleId);
+            articleMapper.topArticle(articleId);
             return 0;
         }catch (Exception e){
             e.printStackTrace();
@@ -45,7 +45,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public int starArticle(String articleId) {
         try {
-            int resultNum = articleMapper.starArticle(articleId);
+            articleMapper.starArticle(articleId);
             return 0;
         }catch (Exception e){
             e.printStackTrace();
@@ -57,7 +57,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public int deleteArticle(String articleId) {
         try {
-            int resultNum = articleMapper.deleteArticle(articleId);
+            articleMapper.deleteArticle(articleId);
             return 0;
         }catch (Exception e){
             e.printStackTrace();
@@ -69,7 +69,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public int cancelDelete(String articleId) {
         try {
-            int resultNum = articleMapper.cancelDelete(articleId);
+            articleMapper.cancelDelete(articleId);
             return 0;
         }catch (Exception e){
             e.printStackTrace();
@@ -81,7 +81,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public int cancelTop(String articleId) {
         try {
-            int resultNum = articleMapper.cancelTop(articleId);
+            articleMapper.cancelTop(articleId);
             return 0;
         }catch (Exception e){
             e.printStackTrace();
@@ -120,15 +120,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public int starArticlePage() {
-        int num = articleMapper.pageForStar();
-        int pageNum = num/10+1;
-        return pageNum;
+    public List<Article> queryAllArticle(String page) {
+        PageHelper.startPage(Integer.valueOf(page),20);
+        return articleMapper.queryAllArticle();
     }
 
     @Override
-    public int deleteArticlePage() {
-        int num = articleMapper.pageForDelete();
+    public int articlePage(String articleState) {
+        int num = articleMapper.pageForArticle(articleState);
         int pageNum = num/10+1;
         return pageNum;
     }

@@ -17,6 +17,6 @@ public interface ArticleService {
     List<Article> queryAllDeleteArticle(String page);
     List<Article> queryAllTopArticle(String page);
     List<Article> queryAllStarArticle(String page);
-    int starArticlePage();
-    int deleteArticlePage();
+    List<Article> queryAllArticle(String page);
+    int articlePage(String articleState);
 }

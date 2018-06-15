@@ -14,7 +14,7 @@
 			$(document).ready(function(){
 				$("#submit").click(function(){
 					$.ajax({
-					url:"http:127.0.0.1:8080/login",
+					url:"http://127.0.0.1:8080/login",
 					type:"post",
 					dataType:"json",
 					data:{
@@ -23,7 +23,9 @@
 					},
 					success:function(data){
 						if(data.message=="login successfully"){
-							window.location.href='./reg.html';
+							var user = JSON.stringify(data.data);
+							sessionStorage.setItem("user",user);
+							window.location.href='./index.html';
 						}else{
 							alert(data.message);
 						}

@@ -34,4 +34,7 @@
     <select id="queryDeleteReply" resultMap="replyMap">
         select * from  reply where reply_state = '1' order by post_time asc
     </select>
+    <select id="pageForReply" resultType="java.lang.Integer">
+        select count(*) from reply where reply_state =#{replyState};
+    </select>
 </mapper>

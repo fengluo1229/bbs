@@ -56,4 +56,10 @@ public class ReplyServiceImpl implements ReplyService {
             return -1;
         }
     }
+    @Override
+    public int pageForReply(String replyState){
+        int num = replyMapper.pageForReply(replyState);
+        int pageNum = num/10+1;
+        return pageNum;
+    }
 }

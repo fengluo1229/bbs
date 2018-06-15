@@ -67,13 +67,10 @@
     <select id="queryAllStarArticle" resultMap="articleMap">
     select * from article where article_state='2' order by post_time asc
     </select>
-    <!--<update id="updateArticle">-->
-        <!--update article-->
-        <!--<set>-->
-            <!--<if test="sortId !=null and sortId !=''">sort_id=#{sortId},</if>-->
-            <!--<if test="labelId !=null and labelId !=''">label_id=#{labelId},</if>-->
-            <!--<if test="articleState !=null and articleState !=''">article_state=#{articleState}</if>-->
-        <!--</set>-->
-        <!--where artice_id=#{articleId}-->
-    <!--</update>-->
+    <select id="pageForArticle" resultType="java.lang.Integer">
+        select count(*) from article where article_state=#{articleState}
+    </select>
+    <select id="queryAllArticle" resultMap="articleMap">
+        select * from article where article_state ='0' order by last_reply_time desc
+    </select>
 </mapper>

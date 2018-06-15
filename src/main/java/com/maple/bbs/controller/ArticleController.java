@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @RestController
-@CrossOrigin
 public class ArticleController {
     @Autowired
     ArticleService articleService;
     @Autowired
     ReplyService replyService;
+
+    //发布文章api
     @PostMapping(value = "/new")
     public Result newArticle(HttpServletRequest request){
         Article article = new Article();
@@ -36,6 +37,7 @@ public class ArticleController {
         }
     }
 
+    //获取文章详情api
     @GetMapping(value = "/t/{articleId}")
     public Result articleContent(@PathVariable("articleId")String articleId, @RequestParam(name = "page",required = false)String page){
         if(page==null){
@@ -46,6 +48,7 @@ public class ArticleController {
         }
     }
 
+    //回复文章详情api
     @PostMapping(value = "/t/{articleId}")
     public Result reply(@PathVariable("articleId")String articleId,HttpServletRequest request){
         Reply reply = new Reply();
@@ -61,6 +64,7 @@ public class ArticleController {
         }
     }
 
+    //置顶文章api
     @PostMapping(value = "/t/{articleId}/top")
     public Result top(@PathVariable("articleId")String articleId){
         int resultNum = articleService.topArticle(articleId);
@@ -71,6 +75,7 @@ public class ArticleController {
         }
     }
 
+    //加精文章api
     @PostMapping(value = "/t/{articleId}/star")
     public Result start(@PathVariable("articleId")String articleId){
         int resultNum = articleService.starArticle(articleId);
@@ -79,5 +84,21 @@ public class ArticleController {
         }else {
             return Result.resultMessage(400,"top error");
         }
+    }
+
+    //获取所有普通文章api
+    @GetMapping(value = "/article")
+    public Result getAllArticle(@RequestParam(name = "page",required = false)String page){
+        if(page!=null){
+            return Result.resultData(200,"success",articleService.queryAllArticle(page));
+        }else {
+            return Result.resultData(200,"success",articleService.queryAllArticle("1"));
+        }
+    }
+
+    //获取普通文章页数api
+    @GetMapping(value = "/article/pageNum")
+    public Result getAllArticlePageNum(){
+        return Result.resultData(200,"success",articleService.articlePage("0"));
     }
 }

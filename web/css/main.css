@@ -1,0 +1,130 @@
+.navbar {
+    margin: 0 20% 30px;
+}
+/* body{
+    margin: 0 15%;
+}
+.container{
+    margin-right: 15%;
+    margin-left: 15%;
+} */
+.content-card-head{
+    width: 60px;
+    height: 60px;
+}
+
+.card-mainContent{
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.reply {
+    width: 10px;
+}
+.eye{
+    width: 10px;
+}
+
+.card-title{
+    font-weight: bold;
+    font-size: 20px;
+}
+.content-label{
+   margin-top: 10px;
+}
+.reply-content{
+    margin: 5px 15px;
+}
+.reply-btn{
+    margin: 20px 0;
+}
+
+.write-card-select{
+    margin: 15px 0;
+}
+.write-card-btn{
+    margin: 15px 0;
+}
+.write-card-panel{
+    margin: 15px 0;
+}
+.panel-title{
+    font-weight: bold;
+}
+.panel{
+    margin: 15px 0;
+}
+.profile-item{
+    text-align: center;
+    margin: 10px auto;
+}
+.profile-item img{
+    width: 140px;
+}
+.profile-item username{
+    font-weight: bold;
+    
+}
+.profile-items>.message{
+    font-size: 18px;
+}
+.list-group>li{
+    text-align: center;
+}
+
+/* .userSetting-form{
+   
+    margin: 15px auto;
+}
+.row{
+    width: 500px;
+}
+
+.userSetting-userHead{
+    width: 100px;
+    margin: 15px auto;
+} */
+.userSetting-content{
+    text-align: center;
+    width: 500px;
+    margin: 15px auto;
+}
+
+.userSetting-userHead{
+    width: 100px;
+    margin: 10px auto;
+}
+
+.userSetting-btn{
+    width: 200px;
+    margin: 15px 50px 15px -45px;
+}
+.logo{
+    margin: 0px auto;
+}
+.logo-text{
+    text-align: left;
+    margin: 10px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    
+    
+}
+/* .logo-text{
+    font-weight: bold;
+    font-size: 27px;
+    color: #a8f68f;
+}
+.logo-text:hover{
+    color:#b3d6e4;
+} */
+.logo-total{
+    display: block;
+}
+thead{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn-deleteCard{
+    margin: 5px auto;
+}
