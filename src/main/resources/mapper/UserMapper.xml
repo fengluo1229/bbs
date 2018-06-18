@@ -9,7 +9,7 @@
         <result property="message" column="message"/>
         <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
         <result property="authority" column="authority"/>
-        <result property="headImg" column="head_img" jdbcType="BLOB"/>
+        <result property="headImg" column="head_img"/>
         <result property="userState" column="user_state"/>
         <result property="banTime" column="ban_time" jdbcType="TIMESTAMP"/>
     </resultMap>

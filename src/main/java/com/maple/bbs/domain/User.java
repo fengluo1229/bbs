@@ -22,17 +22,17 @@ public class User implements Serializable {
     private Date registerTime;
     private Integer authority;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private byte[] headImg;
+    private String headImg;
     private Integer userState;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss a", locale="zh", timezone="GMT+8")
     private Date banTime;
 
-    public void setHeadImg(byte[] headImg) {
+    public void setHeadImg(String headImg) {
         this.headImg = headImg;
     }
 
-    public byte[] getHeadImg() {
+    public String getHeadImg() {
         return headImg;
     }
 
@@ -119,7 +119,7 @@ public class User implements Serializable {
                 ", message='" + message + '\'' +
                 ", registerTime=" + registerTime +
                 ", authority=" + authority +
-                ", headImg=" + Arrays.toString(headImg) +
+                ", headImg=" + headImg +
                 ", userState=" + userState +
                 ", banTime=" + banTime +
                 '}';

@@ -2,6 +2,9 @@ package com.maple.bbs.controller;
 
 
 import com.maple.bbs.domain.Result;
+import com.maple.bbs.domain.User;
+import com.maple.bbs.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +20,10 @@ import java.nio.file.Paths;
 @RestController
 @RequestMapping("/file")
 public class FileController {
+
+    @Autowired
+    UserService userService;
+
     @PostMapping("/images")
     public Result singleFileUpload(@RequestParam("file")MultipartFile file,@RequestParam("fileName")String fileName){
         if(file.isEmpty()){
@@ -26,6 +33,9 @@ public class FileController {
             byte[] bytes = file.getBytes();
             Path path= Paths.get("web/upload/images/"+fileName+suffixName);
             Files.write(path,bytes);
+            User user = userService.queryInfo(fileName);
+            user.setHeadImg(fileName+suffixName);
+            userService.modifyInfo(user);
         }catch (Exception e){
             e.printStackTrace();
             return Result.resultMessage(500,"upload error");
