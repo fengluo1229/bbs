@@ -36,5 +36,8 @@ public interface ArticleMapper {
     int articleNum(String articleString);
 
     List<Article> queryAllArticle();
+
     Article queryArticle(String articleId);
+
+    List<Article> queryArticlesByAuthor(String author);
 }

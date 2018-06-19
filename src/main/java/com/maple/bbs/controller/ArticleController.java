@@ -100,7 +100,15 @@ public class ArticleController {
             return Result.resultMessage(400,"top error");
         }
     }
-
+    //获取用户所有文章
+    @GetMapping(value = "/u/getAllArticle")
+    public Result getAllArticleByUserName(@RequestParam("userName")String userName,@RequestParam(name = "page",required = false)String page){
+        if(page!=null){
+            return Result.resultData(200,"success",articleService.queryArticleByAuthor(userName,page));
+        }else {
+            return Result.resultData(200,"success",articleService.queryArticleByAuthor(userName,"1"));
+        }
+    }
     //获取所有普通文章api
     @GetMapping(value = "/article")
     public Result getAllArticle(@RequestParam(name = "page",required = false)String page){

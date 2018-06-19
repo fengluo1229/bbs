@@ -135,4 +135,10 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.queryArticle(articleId);
     }
 
+    @Override
+    public List<Article> queryArticleByAuthor(String author, String page) {
+        PageHelper.startPage(Integer.valueOf(page),20);
+        return articleMapper.queryArticlesByAuthor(author);
+    }
+
 }

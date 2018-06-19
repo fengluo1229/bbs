@@ -20,4 +20,5 @@ public interface ArticleService {
     List<Article> queryAllArticle(String page);
     int articleNum(String articleState);
     Article queryArticle(String articleId);
+    List<Article> queryArticleByAuthor(String author,String page);
 }

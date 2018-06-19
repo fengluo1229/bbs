@@ -76,4 +76,7 @@
     <select id="queryArticle" resultMap="articleMap">
         select * from article where article_id=#{articleId};
     </select>
+    <select id="queryArticlesByAuthor" resultMap="articleMap">
+        select * from article where article_id !='-1' and author = #{author} order by post_time asc
+    </select>
 </mapper>
