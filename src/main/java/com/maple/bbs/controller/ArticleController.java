@@ -52,6 +52,16 @@ public class ArticleController {
             return Result.resultData(200,"success",replyService.queryReplyByArticleId(p,articleId));
         }
     }
+    //删除文章api
+    @PostMapping(value = "/deleteArticle")
+    public Result deleteArticle(@RequestParam("articleId")String articleId){
+        try{
+            articleService.deleteArticle(articleId);
+            return Result.resultMessage(200,"delete success");
+        }catch (Exception e){
+            return Result.resultMessage(500,"delete error");
+        }
+    }
 
     //回复文章详情api
     @PostMapping(value = "/t/{articleId}")
