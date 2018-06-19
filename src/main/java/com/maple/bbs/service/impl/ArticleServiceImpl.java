@@ -130,4 +130,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.articleNum(articleState);
     }
 
+    @Override
+    public Article queryArticle(String articleId) {
+        return articleMapper.queryArticle(articleId);
+    }
+
 }

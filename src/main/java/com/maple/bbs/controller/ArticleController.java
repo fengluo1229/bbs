@@ -25,7 +25,7 @@ public class ArticleController {
         Article article = new Article();
         article.setArticleTitle(request.getParameter("title"));
         article.setArticleBody(request.getParameter("body"));
-        article.setAuthor(((User) request.getSession().getAttribute("user")).getUserName());
+        article.setAuthor(request.getParameter("userName"));
         article.setPostTime(new Date());
         article.setSort(request.getParameter("sort"));
         article.setLabel(request.getParameter("label"));
@@ -37,7 +37,12 @@ public class ArticleController {
         }
     }
 
-    //获取文章详情api
+    //根据articleId获取文章内容
+    @GetMapping(value = "/t/info")
+    public Result getArticleContext(@RequestParam("articleId")String articleId){
+        return Result.resultData(200,"success",articleService.queryArticle(articleId));
+    }
+    //获取文章回复api
     @GetMapping(value = "/t/{articleId}")
     public Result articleContent(@PathVariable("articleId")String articleId, @RequestParam(name = "page",required = false)String page){
         if(page==null){
@@ -53,7 +58,7 @@ public class ArticleController {
     public Result reply(@PathVariable("articleId")String articleId,HttpServletRequest request){
         Reply reply = new Reply();
         reply.setArticleId(Long.valueOf(articleId));
-        reply.setAuthor(((User)request.getSession().getAttribute("user")).getUserName());
+        reply.setAuthor(request.getParameter("userName"));
         reply.setMessage(request.getParameter("message"));
         reply.setPostTime(new Date());
         int resultNum = replyService.reply(reply);

@@ -4,6 +4,7 @@ import com.maple.bbs.domain.Result;
 import com.maple.bbs.domain.User;
 import com.maple.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -88,5 +89,11 @@ public class UserController {
         }else {
             return Result.resultMessage(400,"Info modify error");
         }
+    }
+
+    //获取用户头像头像
+    @GetMapping(value = "/headImg")
+    public Result getHeadImg(@RequestParam("userName")String userName){
+        return Result.resultData(200,"success",userService.queryInfo(userName).getHeadImg());
     }
 }

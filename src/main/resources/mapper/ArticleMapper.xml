@@ -12,7 +12,7 @@
         <result property="postTime" column="post_time" jdbcType="TIMESTAMP"></result>
         <result property="lastReplyTime" column="last_reply_time" jdbcType="TIMESTAMP"></result>
         <result property="lastReplyAuthor" column="last_reply_author"></result>
-        <result property="replyNum" column="replyNum"></result>
+        <result property="replyNum" column="reply_num"></result>
     </resultMap>
     <!--<select id="selectAllArticle" resultMap="articleMap">-->
         <!--select * from article-->
@@ -72,5 +72,8 @@
     </select>
     <select id="queryAllArticle" resultMap="articleMap">
         select * from article where article_state ='0' order by last_reply_time desc
+    </select>
+    <select id="queryArticle" resultMap="articleMap">
+        select * from article where article_id=#{articleId};
     </select>
 </mapper>
