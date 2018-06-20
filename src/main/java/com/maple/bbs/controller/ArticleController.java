@@ -45,6 +45,7 @@ public class ArticleController {
     public Result getArticleContext(@RequestParam("articleId")String articleId){
         return Result.resultData(200,"success",articleService.queryArticle(articleId));
     }
+
     //获取文章回复api
     @GetMapping(value = "/t/{articleId}")
     public Result articleContent(@PathVariable("articleId")String articleId, @RequestParam(name = "page",required = false)String page){
@@ -55,6 +56,7 @@ public class ArticleController {
             return Result.resultData(200,"success",replyService.queryReplyByArticleId(p,articleId));
         }
     }
+
     //删除文章api
     @PostMapping(value = "/deleteArticle")
     public Result deleteArticle(@RequestParam("articleId")String articleId){

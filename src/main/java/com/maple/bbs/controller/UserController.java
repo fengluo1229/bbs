@@ -103,7 +103,7 @@ public class UserController {
     //获取用户头像头像
     @GetMapping(value = "/headImg")
     public Result getHeadImg(@RequestParam("userName")String userName){
-        String headImg = "http://127.0.0.1:8080/img/"+userService.queryInfo(userName).getHeadImg();
+        String headImg = "http://127.0.0.1:8080/img/headImg/"+userService.queryInfo(userName).getHeadImg();
         return Result.resultData(200,"success",headImg);
     }
 }
