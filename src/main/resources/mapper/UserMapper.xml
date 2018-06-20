@@ -26,7 +26,7 @@
         update user
         <set>
             <if test="password !=null and password !=''">user_password=#{password},</if>
-            <if test="sex !=null and sex !=''">sex=#{sex},</if>
+            <if test="sex !=null">sex=#{sex},</if>
             <if test="message !=null and message !=''">message=#{message},</if>
             <if test="authority !=null">authority=#{authority},</if>
             <if test="headImg !=null">head_img=#{headImg},</if>

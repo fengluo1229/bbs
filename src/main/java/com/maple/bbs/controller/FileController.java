@@ -31,7 +31,7 @@ public class FileController {
         }try{
             String suffixName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
             byte[] bytes = file.getBytes();
-            Path path= Paths.get("web/upload/images/"+fileName+suffixName);
+            Path path= Paths.get("upload/headImg/"+fileName+suffixName);
             Files.write(path,bytes);
             User user = userService.queryInfo(fileName);
             user.setHeadImg(fileName+suffixName);

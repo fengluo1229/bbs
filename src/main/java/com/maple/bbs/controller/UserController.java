@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.awt.*;
 import java.util.Date;
 
 @RestController
@@ -56,10 +57,10 @@ public class UserController {
 
     //修改密码api
     @PostMapping(value = "/u/modify/password")
-    public Result modifyPasswordController(HttpServletRequest request,
+    public Result modifyPasswordController(@RequestParam("userName")String userName,
                                            @RequestParam("oldPassword")String oldPassword,
                                            @RequestParam("newPassword")String newPassword){
-        User user=(User)request.getSession().getAttribute("user");
+        User user=userService.queryInfo(userName);
         if(user.getPassword().equals(oldPassword)){
             user.setPassword(newPassword);
             int resultNum = userService.modifyInfo(user);
@@ -68,13 +69,18 @@ public class UserController {
             return Result.resultMessage(500,"old password error");
         }
     }
+    //获取用户信息
+    @GetMapping(value = "/u")
+    public Result getUserInfo(@RequestParam("userName")String userName){
+        return Result.resultData(200,"success",userService.queryInfo(userName));
+    }
 
     //修改个人信息api
     @PostMapping(value = "/u/modify/message")
-    public Result modifyInfoController(HttpServletRequest request,
+    public Result modifyInfoController(@RequestParam("userName")String userName,
                                        @RequestParam(name = "sex",required = false)String sex,
                                        @RequestParam(name = "message",required = false)String message){
-        User user= (User) request.getSession().getAttribute("user");
+        User user=userService.queryInfo(userName);
         if(sex!=null){
             if(message!=null){
                 user.setSex(Integer.valueOf(sex));
@@ -94,6 +100,7 @@ public class UserController {
     //获取用户头像头像
     @GetMapping(value = "/headImg")
     public Result getHeadImg(@RequestParam("userName")String userName){
-        return Result.resultData(200,"success",userService.queryInfo(userName).getHeadImg());
+        String headImg = "http://127.0.0.1:8080/img/headImg/"+userService.queryInfo(userName).getHeadImg();
+        return Result.resultData(200,"success",headImg);
     }
 }
