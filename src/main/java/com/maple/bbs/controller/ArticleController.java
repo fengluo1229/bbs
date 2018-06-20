@@ -6,6 +6,7 @@ import com.maple.bbs.domain.Result;
 import com.maple.bbs.domain.User;
 import com.maple.bbs.service.ArticleService;
 import com.maple.bbs.service.ReplyService;
+import com.maple.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,8 @@ public class ArticleController {
     ArticleService articleService;
     @Autowired
     ReplyService replyService;
+    @Autowired
+    UserService userService;
 
     //发布文章api
     @PostMapping(value = "/new")
@@ -63,9 +66,14 @@ public class ArticleController {
         }
     }
 
-    //回复文章详情api
+    //回复文章pi
     @PostMapping(value = "/t/{articleId}")
     public Result reply(@PathVariable("articleId")String articleId,HttpServletRequest request){
+        User user = userService.queryInfo(request.getParameter("userName"));
+        if(user.getUserState()==1){
+            Date date = user.getBanTime();
+            return Result.resultMessage(500,"sorry,you can't reply until"+date);
+        }
         Reply reply = new Reply();
         reply.setArticleId(Long.valueOf(articleId));
         reply.setAuthor(request.getParameter("userName"));

@@ -45,7 +45,10 @@ public class UserController {
         try {
             User user = userService.queryInfo(userName);
             if (user.getPassword().equals(password)) {
-                request.getSession().setAttribute("user", user);
+                if(user.getBanTime().before(new Date())){
+                    userService.cancelBan(userName);
+                    user.setUserState(0);
+                }
                 return Result.resultData(200, "login successfully",user);
             } else {
                 return Result.resultMessage(500, "Password error");
@@ -100,7 +103,7 @@ public class UserController {
     //获取用户头像头像
     @GetMapping(value = "/headImg")
     public Result getHeadImg(@RequestParam("userName")String userName){
-        String headImg = "http://127.0.0.1:8080/img/headImg/"+userService.queryInfo(userName).getHeadImg();
+        String headImg = "http://127.0.0.1:8080/img/"+userService.queryInfo(userName).getHeadImg();
         return Result.resultData(200,"success",headImg);
     }
 }
