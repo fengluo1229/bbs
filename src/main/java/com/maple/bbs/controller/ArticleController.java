@@ -132,4 +132,10 @@ public class ArticleController {
     public Result getAllArticlePageNum(){
         return Result.resultData(200,"success",articleService.articleNum("0")/20+1);
     }
+
+    //根据文章Id获取回复页数
+    @PostMapping(value = "/article/replyNum")
+    public Result getReplyByArticleId(@RequestParam("articleId")String articleId){
+        return Result.resultData(200,"success",replyService.replyNumByArticleId(articleId)/10+1);
+    }
 }

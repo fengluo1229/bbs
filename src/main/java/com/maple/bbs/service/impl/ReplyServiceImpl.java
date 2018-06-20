@@ -60,4 +60,9 @@ public class ReplyServiceImpl implements ReplyService {
     public int replyNum(String replyState){
         return  replyMapper.replyNum(replyState);
     }
+
+    @Override
+    public int replyNumByArticleId(String articleId) {
+        return replyMapper.replyNumByArticleId(articleId);
+    }
 }

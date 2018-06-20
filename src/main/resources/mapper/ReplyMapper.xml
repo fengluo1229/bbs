@@ -37,4 +37,7 @@
     <select id="replyNum" resultType="java.lang.Integer">
         select count(*) from reply where reply_state =#{replyState};
     </select>
+    <select id="replyNumByArticleId" resultType="java.lang.Integer">
+        select count(*) from reply where article_id=#{articleId};
+    </select>
 </mapper>
