@@ -16,4 +16,6 @@ public interface UserService {
     List<User> queryAllBanUser(String page);
     int banUsersPage();
     int userNum(String userState);
+    List<User> queryAllAdministartor();
+    int changeUserAuthority(String userName,Integer authority);
 }

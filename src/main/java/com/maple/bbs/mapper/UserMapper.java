@@ -15,5 +15,7 @@ public interface UserMapper {
     int banUser(Date date,String userName);
     int cancelBan(String userName);
     List<User> selectAllBanUser();
+    List<User> selectAllAdministrator();
     int userNum(String userState);
+    int changeUserAuthority(Integer authority,String userName);
 }

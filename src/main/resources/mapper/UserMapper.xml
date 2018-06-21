@@ -48,7 +48,15 @@
     <select id="selectAllBanUser" resultMap="userMap">
         select * from user where user_state='1'
     </select>
+    <select id="selectAllAdministrator" resultMap="userMap">
+        select * from user where authority='1'
+    </select>
     <select id="userNum" resultType="java.lang.Integer">
         select count(*) from user where user_state=#{userState}
     </select>
+    <update id="changeUserAuthority">
+        update user
+        set  authority=#{arg0}
+        where user_name=#{arg1}
+    </update>
 </mapper>

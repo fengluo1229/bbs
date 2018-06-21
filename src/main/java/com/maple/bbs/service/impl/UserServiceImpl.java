@@ -91,4 +91,21 @@ public class UserServiceImpl implements UserService {
     public int userNum(String userState){
         return userMapper.userNum(userState);
     }
+
+    @Override
+    public List<User> queryAllAdministartor() {
+        return userMapper.selectAllAdministrator();
+    }
+
+    @Override
+    @Transactional
+    public int changeUserAuthority(String userName, Integer authority) {
+        try {
+            userMapper.changeUserAuthority(authority,userName);
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;//用户不存在
+        }
+    }
 }

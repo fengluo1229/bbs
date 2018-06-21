@@ -44,16 +44,21 @@ public class UserController {
     public Result loginController(@RequestParam("userName")String userName, @RequestParam("password")String password, HttpServletRequest request){
         try {
             User user = userService.queryInfo(userName);
+            System.out.println(user.getPassword());
+            System.out.println(password);
             if (user.getPassword().equals(password)) {
+                if(user.getBanTime()!=null){
                 if(user.getBanTime().before(new Date())){
                     userService.cancelBan(userName);
                     user.setUserState(0);
+                }
                 }
                 return Result.resultData(200, "login successfully",user);
             } else {
                 return Result.resultMessage(500, "Password error");
             }
         }catch (Exception e){
+            e.printStackTrace();
             return Result.resultMessage(500, "User not exist");
         }
     }
@@ -103,7 +108,7 @@ public class UserController {
     //获取用户头像头像
     @GetMapping(value = "/headImg")
     public Result getHeadImg(@RequestParam("userName")String userName){
-        String headImg = "http://127.0.0.1:8080/img/headImg/"+userService.queryInfo(userName).getHeadImg();
+        String headImg = "http://192.168.2.164:8080/img/headImg/"+userService.queryInfo(userName).getHeadImg();
         return Result.resultData(200,"success",headImg);
     }
 }

@@ -37,6 +37,30 @@ public class AdminController {
         return Result.resultData(200,"success",replyService.replyNum("1")+replyService.replyNum("0"));
     }
 
+    //获取管理员api
+    @GetMapping(value = "/admin/administrator")
+    public Result getAllAdminister(){
+        return Result.resultData(200,"success",userService.queryAllAdministartor());
+    }
+    //添加管理员api
+    @PostMapping(value = "admin/addAdministrator")
+    public Result addAdministrator(@RequestParam("userName")String userName){
+        if(userService.changeUserAuthority(userName,1)==0){
+            return Result.resultMessage(200,"add administrator successfully");
+        }else {
+            return Result.resultMessage(200,"user don't exist");
+        }
+    }
+    //删除管理员api
+    @PostMapping(value = "admin/removeAdministrator")
+    public Result removeAdministrator(@RequestParam("userName")String userName){
+        if (userService.changeUserAuthority(userName,0)==0){
+            return Result.resultMessage(200,"remove administrator successfully");
+        }else {
+            return Result.resultMessage(200,"remove error");
+        }
+    }
+
     //获取封禁用户api
     @GetMapping(value = "/admin/user")
     public Result getAllBanUser(@RequestParam(name = "page",required = false)String page){
